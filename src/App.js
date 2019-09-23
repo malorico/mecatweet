@@ -16,7 +16,7 @@ export class App extends Component {
         {
           "created_at": "Thu Apr 06 15:24:15 +0000 2017",
           "id_str": "850006245121695744",
-          "text": "Today we\u2019re sharing our vision for the future of the Twitter API platform!https://t.co/XweGngmxlP",
+          "text": "Today sharing our vision for the future",
           "user": {
             "id": 2244994945,
             "name": "Twitter Dev",
