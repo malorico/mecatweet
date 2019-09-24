@@ -9,40 +9,60 @@ export class TextInput extends Component {
         }
 
     }
+    //aqui iremos guardando el texto según lo vayamos introduciendo en el texarea.
     textoActual =" ";
+    //en este objeto reestablecemos el contenido de texarea cada vez que pulsemos espacio.
+    textarea={ };
 
+    
     handleKeyPress = (event) =>{
         this.setState({ tonto: true});
         let igual = true;
         this.textoActual = event.target.value;
+        console.log(this.textoActual);
         const textoTweet = this.props.tweet;
         for(var i=0;i<this.textoActual.length;i++){
             if(this.textoActual[i] !== textoTweet[i]){
                 igual = false;
                 this.setState({ tonto: false});
+                
             }
-            
-            
-        }
+            //si el usuario pulsa la barra espaciadora llamaremos a la función borrarPalabra
+            if (event.keyCode === 32) {
+                this.borrarPalabra();
+                
+            }
         
-          
     }
+
+}
+    // esta función introduce una cadena vacía en el textarea.
+    borrarPalabra(){
+        console.log("he entrado en borrarPalabra");
+   
+        this.textarea["textoIntroducido"].value = "";
+    }
+    update = (event) => {
+        this.textarea[event.target.name] = event.target // we'll attach the target in the form obj here so we can reference it later
+      }
+  
     pulsarBoton = (event) => {
         let igual = true;
         const textoTweet = this.props.tweet;
-       /*  console.log(textoTweet.includes(this.textoActual)); */
+        this.textoActual = event.target.value;
             
         if(this.textoActual.length !== textoTweet.length){
             igual = false; 
         }else {
 
-                for(var i=0;i<this.textoActual.length;i++){
+            for(var i=0;i<this.textoActual.length;i++){
                 if(this.textoActual[i] !== textoTweet[i] ){
                     igual = false;
                     this.setState({ tonto: false});
                 }
+                
+            }  
         }
-    }
 
         console.log(this.textoActual);
         console.log(textoTweet);
@@ -50,19 +70,15 @@ export class TextInput extends Component {
        
 }
 
+
     render() {
         return (
             <div>
-                {/* <h1>text imput component</h1> */}
-               {/*  <p className={
-                (this.state.tonto ? "verde " : "rojo ") 
-                  }>
-                    Correcto
-                </p> */}
-                <textarea className="form-control "onChange={this.handleKeyPress}>
+              
+                <textarea name ="textoIntroducido" className="form-control "onKeyDown={this.handleKeyPress} onChange={this.update}>
 
                 </textarea>
-                <button className="btn btn-danger" onClick={this.pulsarBoton}>
+                <button className="btn btn-primary" onClick={this.pulsarBoton}>
                     COMPROBAR
                 </button>
                 
@@ -71,10 +87,5 @@ export class TextInput extends Component {
         )
     }
 } 
-
-// con el espacio que desaparezca lo que está en textarea
-// Comprobar que tecla he pulsado y si la palabra es correcta y he pulsado
-// el espacio, borrar el contenido de textarea.
-// puedo usar una funcion que ya tengo aqui
 
 export default TextInput

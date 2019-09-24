@@ -82,7 +82,7 @@ export class App extends Component {
     return (
       <div>
         <TweetImportado tweets={this.state.Tweets}/>
-        <TextInput tweet={this.state.Tweets[0].text}/>
+        <TextInput tweet={this.state.Tweets[1].text}/>
         
         <Info/>
         <Error/>
